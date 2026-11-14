@@ -1,6 +1,6 @@
 //core
 pack.name=传说之剑·被尘封的传说·资源包
-pack.description=传说之剑·被尘封的传说的配套资源包  |  测试版2.0.0-alpha.4
+pack.description=传说之剑·被尘封的传说的配套资源包  |  测试版2.0.0-alpha.5
 ls.text.task_group.minecraft=§d[主线·第一章]§r矿艺
 ls.text.task_group_introduction.minecraft=山清水秀，万物葱融——这是新冒险的起源
 ls.text.task_group.explore=§d[主线·第二章]§r探索世界
@@ -62,7 +62,7 @@ ls.text.MenuIndex.2=似乎是被某人遗忘在此处，而被你发现捡起
 ls.text.menu.tasks=任务
 ls.text.menu.articles=遗忘游记
 ls.text.menu.copyright=著作权声明
-ls.text.menu.update=版本发行说明-v2.0.0-alpha.4
+ls.text.menu.update=版本发行说明-v2.0.0-alpha.5
 ls.text.articlesTitle=遗忘游记
 ls.text.no_articles=这些文字已消逝于历史长河中，也许正藏匿在世界某处...
 ls.text.articles=消逝于历史长河中的文字
@@ -120,15 +120,12 @@ ls.text.copyright.32=
 ls.text.copyright.33=本项目所涉及的全部§l§b美术§r资源（包括但不限于§e纹理、模型、音效、音乐、UI素材、插画、特效、动画§r等）的著作权，依法归属于§e星屹工作室§r及其制作者独家所有，不适用于上述许可。
 ls.text.copyright.34=任何单位或个人，未经星屹工作室书面授权，不得擅自复制、修改、分发、商用或二次使用上述美术资源。
 ls.text.update.1=§o§e当前版本属于§c§l§o测试版§r§e§o，可能伴随漏洞，请注意备份您的存档§r
-ls.text.update.2=当前版本为§bv2.0.0-alpha.4§r,带来了以下变更：
+ls.text.update.2=当前版本为§bv2.0.0-alpha.5§r,带来了以下变更：
 ls.text.update.3=§l新增§r
-ls.text.update.4=· 加入了版本发行说明
-ls.text.update.5=· 现在会在玩家首次加入时给予遗忘之书
-ls.text.update.6=· 现在支持从部分其他附加包导入任务记录
-ls.text.update.7=· 加入了更多任务
-ls.text.update.8=· 支持了灵动视效
-ls.text.update.9= 
-ls.text.update.10=请前往“腾讯频道-星屹俱乐部（pd09459981）-其他作品”或加入QQ群631065058以获取更新及反馈漏洞
+ls.text.update.4=· 加入了各等级传说之剑锻造模板
+ls.text.update.5=· 将玩偶相关脚本迁移至自定义组件
+ls.text.update.6= 
+ls.text.update.7=请前往“腾讯频道-星屹俱乐部（pd09459981）-其他作品”或加入QQ群631065058以获取更新及反馈漏洞
 action.interact.legendary_sword:forgotten_book=打开《传说之剑·被尘封的传说》主菜单
 action.interact.legendary_sword:articles=阅读
 ls.text.importTask=从其他附加包导入任务记录
@@ -156,6 +153,7 @@ item.minecraft:diamond=钻石
 item.minecraft:coal=煤炭
 item.minecraft:lapis_lazuli=青金石
 item.minecraft:redstone=红石粉
+item.legendary_sword.legendary_ingot=传说之锭
 
 //catalogs
 legendary_sword:itemGroup.name.ores=传说之剑·矿物
@@ -176,6 +174,10 @@ item.legendary_sword:fruit_of_victory=争胜果
 item.legendary_sword:edict_of_the_end_crusade=终界讨伐之诏
 item.record_where_it_starts.desc=FREirc - 始生之墟
 item.legendary_sword:blazing_ingot=赤焰锭
+
+legendary_sword.returning_sword_smithing_template.name=归来之剑升级
+legendary_sword.hero_sword_smithing_template.name=英雄之剑升级
+legendary_sword.legendary_sword_smithing_template.name=传说之剑升级
 
 item.legendary_sword:blazing_sword=赤焰剑
 item.legendary_sword:xinghua_sword=星华剑

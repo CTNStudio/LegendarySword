@@ -1,0 +1,20 @@
+{
+    "format_version": "1.20.70",
+    "minecraft:item": {
+        "description": {
+            "identifier": "legendary_sword:legendary_sword_smithing_template",
+            "menu_category": {
+                "category": "none"
+            }
+        },
+        "components": {
+            "minecraft:icon": "legendary_sword_smithing_template",
+            "minecraft:display_name": {
+                "value": "§e%legendary_sword.legendary_sword_smithing_template.name"
+            },
+            "minecraft:tags": {
+                "tags": ["minecraft:transform_templates"]
+            }
+        }
+    }
+}

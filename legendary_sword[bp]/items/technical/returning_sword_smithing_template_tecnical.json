@@ -1,0 +1,19 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:item": {
+        "description": {
+            "identifier": "legendary_sword:returning_sword_smithing_template_tecnical",
+            "menu_category": {
+                "category": "items",
+                "group": "itemGroup.name.smithing_templates",
+                "is_hidden_in_commands": true
+            }
+        },
+        "components": {
+            "minecraft:icon": "returning_sword_smithing_template",
+            "minecraft:display_name": {
+                "value": "§e%legendary_sword.returning_sword_smithing_template.name\n§7%item.smithing_template.name\n\n%item.smithing_template.applies_to\n§9 %legendary_sword.broken_sword.name\n§7%item.smithing_template.ingredients\n§9 %item.legendary_sword.legendary_ingot"
+            }
+        }
+    }
+}

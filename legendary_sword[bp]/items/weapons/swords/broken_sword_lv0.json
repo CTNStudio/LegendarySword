@@ -56,7 +56,8 @@
                 "tags": [
                     "minecraft:is_sword",
                     "minecraft:is_tool",
-                    "minecraft:iron_tier"
+                    "minecraft:iron_tier",
+                    "minecraft:transformable_items"
                 ]
             }
         }

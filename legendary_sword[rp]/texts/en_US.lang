@@ -1,6 +1,6 @@
 //core
 pack.name=Legendary Sword·The Sealed Legend·Resource Pack
-pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.4
+pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.5
 ls.text.task_group.minecraft=§d[Main·Chapter I]§rMinecraft
 ls.text.task_group_introduction.minecraft=Lucid waters and lush mountains are the beginning of a new journey.
 ls.text.task_group.explore=§d[Main·Chapter II]§rExplore the World
@@ -62,7 +62,7 @@ ls.text.MenuIndex.2=It seems someone forgot it here, and you found it and picked
 ls.text.menu.tasks=Tasks
 ls.text.menu.articles=Forgotten Travelogues
 ls.text.menu.copyright=Copyright Notice
-ls.text.menu.update=Release Note-v2.0.0-alpha.4
+ls.text.menu.update=Release Note-v2.0.0-alpha.5
 ls.text.articlesTitle=Forgotten Travelogues
 ls.text.no_articles=These words have faded into the long river of history, perhaps still hidden somewhere in the world...
 ls.text.articles=Words lost in the long river of time
@@ -120,15 +120,12 @@ ls.text.copyright.32=
 ls.text.copyright.33=All §l§bartistic§r resources involved in this project (including but not limited to §etextures, models, sound effects, music, UI assets, illustrations, visual effects, animations§r, etc.) are exclusively owned by §eCTN Studio§r and its creators under copyright law, and do not fall under the aforementioned open-source license.
 ls.text.copyright.34=No individual or entity may reproduce, modify, distribute, commercially use, or re-use the above artistic resources without the written permission of CTN Studio.
 ls.text.update.1=§o§eThe current version is a §c§l§otrail§r§e§o version, which may contain bugs. Please remember to backup your save.§r
-ls.text.update.2=The current version is §bv2.0.0-alpha.4§r, bringing the following changes:
+ls.text.update.2=The current version is §bv2.0.0-alpha.5§r, bringing the following changes:
 ls.text.update.3=§lNew Features§r
-ls.text.update.4=· Added version release note.
-ls.text.update.5=· Players will now get the Forgotten Book upon first joining.
-ls.text.update.6=· Now supports importing task records from certain other addons.
-ls.text.update.7=· Added more tasks.
-ls.text.update.8=· Added support for Vibrant Visuals.
-ls.text.update.9=
-ls.text.update.10=Please visit "Tencent Channel - CTN Club (pd09459981) - Other Works" or join QQ group 631065058 to get updates and report issues.
+ls.text.update.4=· Added smithing templates for each level of the Legendary Sword
+ls.text.update.5=· Migrated doll-related scripts to custom components
+ls.text.update.6= 
+ls.text.update.7==Please visit "Tencent Channel - CTN Club (pd09459981) - Other Works" or join QQ group 631065058 to get updates and report issues.
 action.interact.legendary_sword:forgotten_book=Open the menu of §oLegendary Sword§r
 action.interact.legendary_sword:articles=Read
 ls.text.importTask=Import task records from other addons
@@ -139,6 +136,24 @@ ls.text.submitImportTask=Start Import
 ls.text.finishImportTask=§aImport completed!§r
 ls.text.importHy3=Hidden Year²: Governor at the Skyline §3§oSupports version 3.x
 ls.text.importHy2=Hidden Year² §3§oSupports version 2.x
+
+//technical
+item.minecraft:crafting_table=Crafting Table
+item.minecraft:bread=Bread
+item.minecraft:torch=Torches
+item.minecraft:soul_torch=Soul Torch
+item.minecraft:copper_torch=Copper Torch
+item.minecraft:obsidian=Obsidian
+item.minecraft:iron_ingot=Iron Ingot
+item.minecraft:emerald=Emerald
+item.minecraft:stone_pickaxe=Stone Pickaxe
+item.minecraft:iron_pickaxe=Iron Pickaxe
+item.minecraft:water_bucket=Water Bucket
+item.minecraft:diamond=Diamond
+item.minecraft:coal=Coal
+item.minecraft:lapis_lazuli=Lapis Lazuli
+item.minecraft:redstone=Redstone
+item.legendary_sword.legendary_ingot=Legendary Ingot
 
 //catalogs
 legendary_sword:itemGroup.name.ores=Legendary Sword·Ores
@@ -158,6 +173,10 @@ item.legendary_sword:forgotten_book=The Forgotten Book
 item.legendary_sword:fruit_of_victory=Victorious Fruit
 item.legendary_sword:edict_of_the_end_crusade=Edict of an Onslaught against the End
 item.record_where_it_starts.desc=FREirc - Where It Starts
+
+legendary_sword.returning_sword_smithing_template.name=Returning Sword Upgrade
+legendary_sword.hero_sword_smithing_template.name=Heroic Sword Upgrade
+legendary_sword.legendary_sword_smithing_template.name=Legendary Sword Upgrade
 
 item.legendary_sword:blazing_ingot=Blazing Ingot
 item.legendary_sword:xinghua_sword=Xinghua Sword

@@ -99,7 +99,8 @@
             },
             "minecraft:precipitation_interactions": {
                 "precipitation_behavior": "obstruct_rain"
-            }
+            },
+            "legendary_sword:doll": {}
         }
     }
 }

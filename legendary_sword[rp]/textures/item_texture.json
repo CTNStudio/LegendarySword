@@ -100,6 +100,15 @@
         },
         "developers_doll_lootbag": {
             "textures": "textures/items/developers_doll_lootbag"
+        },
+        "returning_sword_smithing_template":{
+            "textures": "textures/items/returning_sword_smithing_template"
+        },
+        "hero_sword_smithing_template":{
+            "textures": "textures/items/hero_sword_smithing_template"
+        },
+        "legendary_sword_smithing_template":{
+            "textures": "textures/items/legendary_sword_smithing_template"
         }
     }
 }

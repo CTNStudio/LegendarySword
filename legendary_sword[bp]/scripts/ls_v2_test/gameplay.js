@@ -1,6 +1,7 @@
 import { world, system, ItemStack, CustomComponentParameters } from "@minecraft/server";
 import { ActionFormData, ActionFormResponse, MessageFormData, MessageFormResponse, ModalFormData, ModalFormResponse } from "@minecraft/server-ui";
 
+//Task import registry
 const hy2Tasks= [
 {
   source: "hy-q:crafting_table",
@@ -27,6 +28,7 @@ const hy3Tasks= [
   }
 ]
 
+//Article and task data
 const ArticleData = [
 {
   article_id: 1,
@@ -415,6 +417,7 @@ function giveLoot(player,loot){
   }
 }
 
+//Menu
 function showMenuIndex(player){
   let menuPage=new ActionFormData();
   menuPage.title("%ls.text.MenuIndexTitle");
@@ -467,7 +470,7 @@ function update(player){
   let updateBody={
     rawtext:[]
   }
-  for(let i=1;i<=10;i++){
+  for(let i=1;i<=7;i++){
     updateBody.rawtext.push({translate:`%ls.text.update.${i}`},{text: "\n"})
   }
   updatePage.body(updateBody);
@@ -764,6 +767,66 @@ world.afterEvents.itemUse.subscribe((event)=>{
   }
 })
 
+world.afterEvents.playerInventoryItemChange.subscribe((event)=>{
+  const itemStack=event.itemStack;
+  const player=event.player;
+  const slot=event.slot;
+  if(itemStack==undefined) return;
+  switch(itemStack.typeId){
+    case ("legendary_sword:returning_sword_smithing_template_tecnical"):
+      let getItem=new ItemStack("legendary_sword:returning_sword_smithing_template",itemStack.amount);
+      player.getComponent("minecraft:inventory").container.setItem(slot,getItem);
+      break;
+    case ("legendary_sword:returning_sword_smithing_template"):
+      let lore={
+        rawtext:[
+          {text: "§r§7"},{translate: `item.smithing_template.name`},
+          {text: "\n\n"},{text: "§r§7"},{translate: `item.smithing_template.applies_to`},
+          {text: "\n"},{text: "§r§9 "},{translate: `legendary_sword.broken_sword.name`},
+          {text: "\n"},{text: "§r§7"},{translate: `item.smithing_template.ingredients`},
+          {text: "\n"},{text: "§r§9 "},{translate: `item.legendary_sword.legendary_ingot`}
+        ]
+      }
+      itemStack.setLore([lore]);
+      player.getComponent("minecraft:inventory").container.setItem(slot,itemStack);
+      break;
+    case ("legendary_sword:hero_sword_smithing_template_tecnical"):
+      let getItem2=new ItemStack("legendary_sword:hero_sword_smithing_template",itemStack.amount);
+      player.getComponent("minecraft:inventory").container.setItem(slot,getItem2);
+      break;
+    case ("legendary_sword:hero_sword_smithing_template"):
+      let lore2={
+        rawtext:[
+          {text: "§r§7"},{translate: `item.smithing_template.name`},
+          {text: "\n\n"},{text: "§r§7"},{translate: `item.smithing_template.applies_to`},
+          {text: "\n"},{text: "§r§9 "},{translate: `legendary_sword.returning_sword.name`},
+          {text: "\n"},{text: "§r§7"},{translate: `item.smithing_template.ingredients`},
+          {text: "\n"},{text: "§r§9 "},{translate: `item.legendary_sword.legendary_ingot`}
+        ]
+      }
+      itemStack.setLore([lore2]);
+      player.getComponent("minecraft:inventory").container.setItem(slot,itemStack);
+      break;
+    case ("legendary_sword:legendary_sword_smithing_template_tecnical"):
+      let getItem3=new ItemStack("legendary_sword:legendary_sword_smithing_template",itemStack.amount);
+      player.getComponent("minecraft:inventory").container.setItem(slot,getItem3);
+      break;
+    case ("legendary_sword:legendary_sword_smithing_template"):
+      let lore3={
+        rawtext:[
+          {text: "§r§7"},{translate: `item.smithing_template.name`},
+          {text: "\n\n"},{text: "§r§7"},{translate: `item.smithing_template.applies_to`},
+          {text: "\n"},{text: "§r§9 "},{translate: `legendary_sword.hero_sword.name`},
+          {text: "\n"},{text: "§r§7"},{translate: `item.smithing_template.ingredients`},
+          {text: "\n"},{text: "§r§9 "},{translate: `item.legendary_sword.legendary_ingot`}
+        ]
+      }
+      itemStack.setLore([lore3]);
+      player.getComponent("minecraft:inventory").container.setItem(slot,itemStack);
+      break;
+  }
+})
+
 system.beforeEvents.startup.subscribe((event)=>{
   event.itemComponentRegistry.registerCustomComponent("legendary_sword:article_unlocker",{
     onUse(event,p){
@@ -792,5 +855,17 @@ system.beforeEvents.startup.subscribe((event)=>{
       }
       giveLoot(player,p.params.loot)
     }
-  })
+  });
+  event.blockComponentRegistry.registerCustomComponent("legendary_sword:doll",{
+    onPlayerBreak: (event) => {
+      const { player, block, dimension } = event;
+      let location = block.location;
+      dimension.playSound("doll.break_click", location, { volume: 1.0, pitch: 1.0 });
+    },
+    onPlayerInteract: (event) => {
+      const { player, block, dimension } = event;
+      let location = block.location;
+      dimension.playSound("doll.break_click", location, { volume: 1.0, pitch: 1.0 });
+    }
+  });
 })

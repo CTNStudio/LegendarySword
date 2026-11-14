@@ -62,7 +62,8 @@
                 "tags": [
                     "minecraft:is_sword",
                     "minecraft:is_tool",
-                    "minecraft:diamond_tier"
+                    "minecraft:diamond_tier",
+                    "minecraft:transformable_items"
                 ]
             }
         }

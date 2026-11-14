@@ -1,0 +1,20 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:item": {
+        "description": {
+            "identifier": "legendary_sword:returning_sword_smithing_template",
+            "menu_category": {
+                "category": "none"
+            }
+        },
+        "components": {
+            "minecraft:icon": "returning_sword_smithing_template",
+            "minecraft:display_name": {
+                "value": "§e%legendary_sword.returning_sword_smithing_template.name"
+            },
+            "minecraft:tags": {
+                "tags": ["minecraft:transform_templates"]
+            }
+        }
+    }
+}

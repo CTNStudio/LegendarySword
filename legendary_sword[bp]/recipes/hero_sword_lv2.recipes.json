@@ -1,41 +1,13 @@
 {
     "format_version": "1.12",
-    "minecraft:recipe_shaped": {
+    "minecraft:recipe_smithing_transform": {
         "description": {
             "identifier": "legendary_sword:hero_sword_lv2"
         },
-        "tags": [
-            "crafting_table"
-        ],
-        "unlock": [
-            {
-                "item": "legendary_sword:returning_sword_lv1"
-            }
-        ],
-        "pattern": [
-            "OXO",
-            "ONO",
-            "GNG"
-        ],
-        "key": {
-            "O": {
-                "item": "legendary_sword:legendary_ingot"
-            },
-            "N": {
-                "item": "minecraft:netherite_ingot"
-            },
-            "X": {
-                "item": "legendary_sword:returning_sword_lv1"
-            },
-            "G": {
-                "item": "gold_ingot"
-            },
-            "S": {
-                "item": "minecraft:stick"
-            }
-        },
-        "result": {
-            "item": "legendary_sword:hero_sword_lv2"
-        }
+        "tags": [ "smithing_table" ],
+        "template": "legendary_sword:hero_sword_smithing_template",
+        "base": "legendary_sword:returning_sword_lv1",
+        "addition": "legendary_sword:legendary_ingot",
+        "result": "legendary_sword:hero_sword_lv2"
     }
 }

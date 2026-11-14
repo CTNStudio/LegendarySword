@@ -62,7 +62,8 @@
                 "tags": [
                     "minecraft:is_sword",
                     "minecraft:is_tool",
-                    "minecraft:netherite_tier"
+                    "minecraft:netherite_tier",
+                    "minecraft:transformable_items"
                 ]
             }
         }
