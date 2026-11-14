@@ -265,6 +265,29 @@ const TaskData = [
         add_xp: 20,
         give_tag: "ls:unlocked_task.10"
       }
+    },
+    {
+      task_id: 14,
+      task_name: "ls.text.task.trinkets",
+      task_introduction: "ls.text.task_introduction.trinkets",
+      need_unlock: false,
+      requirement: {
+        get_all_tag_items:[{
+          tag_id: "legendary_sword:trinket",
+          count: 1
+        }]
+      },
+      award: {
+        get_items:[{
+          item_id: "legendary_sword:hopeful_coin",
+          count: 6
+        },
+        {
+          item_id: "legendary_sword:legendary_nugget",
+          count: 2
+        }],
+        add_xp: 25
+      }
     }
   ]
 },
@@ -379,7 +402,7 @@ function giveItem(player,typeId,count){
   const inventory=player.getComponent("minecraft:inventory").container;
   let item=new ItemStack(typeId,count);
   let availableSlot=[]
-  for(let i=1;i<inventory.size;i++){
+  for(let i=0;i<inventory.size;i++){
     let itemInSlot=inventory.getItem(i);
     if(itemInSlot==undefined){
       availableSlot.push(i);
@@ -402,7 +425,7 @@ function giveLoot(player,loot){
   const inventory=player.getComponent("minecraft:inventory").container;
   const dimension=player.dimension;
   let availableSlot=[]
-  for(let i=1;i<inventory.size;i++){
+  for(let i=0;i<inventory.size;i++){
     let itemInSlot=inventory.getItem(i);
     if(itemInSlot==undefined){
       availableSlot.push(i);
@@ -680,6 +703,20 @@ function showTask(chapter,task,player){
         taskBody.rawtext.push({translate: "ls.text.task.requirements.any_items_display",with:{rawtext:[{translate:`item.${requirements.get_any_items[i].item_id}`},{text:`${requirements.get_any_items[i].count.toString()}`}]}})
       }
     }
+    if(requirements.get_all_tag_items){
+      taskBody.rawtext.push({text: "\n"})
+      taskBody.rawtext.push({translate: "ls.text.task.requirements.all_tag_items"})
+      for(let i=0;i<requirements.get_all_tag_items.length;i++){
+        taskBody.rawtext.push({translate: "ls.text.task.requirements.all_tag_items_display",with:{rawtext:[{translate:`tag.${requirements.get_all_tag_items[i].tag_id}`},{text:`${requirements.get_all_tag_items[i].count.toString()}`}]}})
+      }
+    }
+    if(requirements.get_any_tag_items){
+      taskBody.rawtext.push({text: "\n"})
+      taskBody.rawtext.push({translate: "ls.text.task.requirements.any_tag_items"})
+      for(let i=0;i<requirements.get_any_tag_items.length;i++){
+        taskBody.rawtext.push({translate: "ls.text.task.requirements.any_tag_items_display",with:{rawtext:[{translate:`tag.${requirements.get_any_tag_items[i].tag_id}`},{text:`${requirements.get_any_tag_items[i].count.toString()}`}]}})
+      }
+    }
   };
   if(isAwardClaimed) taskBody.rawtext.push({text: "\n"},{translate: "ls.text.award_claimed"})
   else{
@@ -726,13 +763,15 @@ function checkTasks(task,player,autoClaimAward){
   const playerName=player.name;
   let meet_all_items=false;
   let meet_any_items=false;
+  let meet_all_tag_items=false;
+  let meet_any_tag_items=false;
   if(requirements.get_all_items){
     let meet_requirements_all_item=[]
     for(let i=0;i<requirements.get_all_items.length;i++){
       let require_item=requirements.get_all_items[i].item_id;
       let require_amount=requirements.get_all_items[i].count;
       let amount=0;
-      for(let i=1;i<inventory.size;i++){
+      for(let i=0;i<inventory.size;i++){
         let itemInSlot=inventory.getItem(i);
         if(itemInSlot!==undefined&&itemInSlot.typeId==require_item) amount+=itemInSlot.amount;
       }
@@ -747,7 +786,7 @@ function checkTasks(task,player,autoClaimAward){
       let require_item=requirements.get_any_items[i].item_id;
       let require_amount=requirements.get_any_items[i].count;
       let amount=0;
-      for(let i=1;i<inventory.size;i++){
+      for(let i=0;i<inventory.size;i++){
         let itemInSlot=inventory.getItem(i);
         if(itemInSlot!==undefined&&itemInSlot.typeId==require_item) amount+=itemInSlot.amount;
       }
@@ -756,7 +795,37 @@ function checkTasks(task,player,autoClaimAward){
     if(meet_requirements_any_item.length>0) meet_any_items=true;
   }
   else meet_any_items=true;
-  if(meet_any_items&&meet_all_items){
+  if(requirements.get_all_tag_items){
+    let meet_requirements_tag_item=[]
+    for(let i=0;i<requirements.get_all_tag_items.length;i++){
+      let require_tag=requirements.get_all_tag_items[i].tag_id;
+      let require_amount=requirements.get_all_tag_items[i].count;
+      let amount=0;
+      for(let i=0;i<inventory.size;i++){
+        let itemInSlot=inventory.getItem(i);
+        if(itemInSlot!==undefined&&itemInSlot.hasTag(require_tag)) amount+=itemInSlot.amount;
+      }
+      if(amount>=require_amount) meet_requirements_tag_item.push(require_tag);
+    }
+    if(meet_requirements_tag_item.length==requirements.get_all_tag_items.length) meet_all_tag_items=true;
+  }
+  else meet_all_tag_items=true;
+  if(requirements.get_any_tag_items){
+    let meet_requirements_any_tag_item=[]
+    for(let i=0;i<requirements.get_any_tag_items.length;i++){
+      let require_tag=requirements.get_any_tag_items[i].tag_id;
+      let require_amount=requirements.get_any_tag_items[i].count;
+      let amount=0;
+      for(let i=0;i<inventory.size;i++){
+        let itemInSlot=inventory.getItem(i);
+        if(itemInSlot!==undefined&&itemInSlot.hasTag(require_tag)) amount+=itemInSlot.amount;
+      }
+      if(amount>=require_amount) meet_requirements_any_tag_item.push(require_tag);
+    }
+    if(meet_requirements_any_tag_item.length>0) meet_any_tag_items=true;
+  }
+  else meet_any_tag_items=true;
+  if(meet_any_items&&meet_all_items&&meet_all_tag_items&&meet_any_tag_items){
     player.addTag(`ls:completed_task.${taskId}`)
     if(autoClaimAward) giveAward(player,task);
     world.sendMessage({rawtext:[{translate:"ls.text.finish_task_broadcast",with:{rawtext:[{text:`${playerName}`},{translate:taskName}]}}]})
@@ -932,6 +1001,55 @@ system.runInterval(()=>{
         }
         player.addEffect(effect.id,10,{amplifier: effect.amplifier,showParticles: false});
       }
+    }
+  }
+})
+
+world.afterEvents.entitySpawn.subscribe((event)=>{
+  const entity=event.entity;
+  if(entity.typeId.includes("arrow")){
+    const rotation=entity.getRotation();
+    const velocity=entity.getVelocity();
+    const projectile=entity.getComponent("minecraft:projectile");
+    const shooter=projectile.owner;
+    if(shooter?.getDynamicProperty("legendary_sword:trinket")=="legendary_sword:tripling_quiver"){
+      const inventory=shooter.getComponent("minecraft:inventory").container;
+      let ArrowCount=0;
+      let ArrowSlot=[];
+      for(let i=0;i<inventory.size;i++){
+        let itemInSlot=inventory.getItem(i);
+        if(itemInSlot!==undefined&&itemInSlot.typeId==entity.typeId) {
+          ArrowCount+=itemInSlot.amount;
+          ArrowSlot.push(i);
+        }
+      }
+      if(ArrowCount>=2){
+        let GoalAmount=2;
+        for(let i=0;i<ArrowSlot.length;i++){
+          if(GoalAmount==0) break;
+          if(inventory.getItem(ArrowSlot[i]).amount>GoalAmount){
+            inventory.setItem(ArrowSlot[i],new ItemStack(entity.typeId,inventory.getItem(ArrowSlot[i]).amount-2));
+            GoalAmount=0;
+          }
+          else if(inventory.getItem(ArrowSlot[i]).amount==GoalAmount){
+            inventory.setItem(ArrowSlot[i],undefined);
+            GoalAmount=0;
+          }
+          else{
+            GoalAmount-=inventory.getItem(ArrowSlot[i]).amount;
+            inventory.setItem(ArrowSlot[i],undefined);
+          }
+        }
+        const dimension=entity.dimension;
+        const location=entity.location;
+        let entity1=dimension.spawnEntity(entity.typeId,location,{initialPersistence: true});
+        let entity2=dimension.spawnEntity(entity.typeId,location,{initialPersistence: true});
+        entity1.setRotation({x: rotation.x,y: rotation.y+26.57});
+        entity2.setRotation({x: rotation.x,y: rotation.y-26.57});
+        entity1.getComponent("minecraft:projectile").shoot({x: 0.8944*velocity.x+0.4472*velocity.z,y: velocity.y,z: 0.8944*velocity.z-0.4472*velocity.x});
+        entity2.getComponent("minecraft:projectile").shoot({x: 0.8944*velocity.x-0.4472*velocity.z,y: velocity.y,z: 0.8944*velocity.z+0.4472*velocity.x});
+      }
+      else shooter.sendMessage("%ls.text.trinket_effects.tripling_quiver.no_enough_arrows")
     }
   }
 })
