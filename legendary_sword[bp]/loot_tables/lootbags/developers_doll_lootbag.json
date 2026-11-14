@@ -1,0 +1,59 @@
+{
+    "pools": [
+        {
+            "rolls":1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "legendary_sword:jdingot_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:kusanagi_sans_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:kuluo_d_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:luning39_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:mccaptain5412_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:mings9210_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:slimedragon_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:stonenugget_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:wangxiaojin_doll",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "legendary_sword:xiris_doll",
+                    "weight": 1
+                }
+            ]
+        }
+    ]
+}

@@ -1,10 +1,16 @@
 //core
 pack.name=Legendary Sword·The Sealed Legend·Resource Pack
-pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.3
+pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.4
 ls.text.task_group.minecraft=§d[Main·Chapter I]§rMinecraft
 ls.text.task_group_introduction.minecraft=Lucid waters and lush mountains are the beginning of a new journey.
 ls.text.task_group.explore=§d[Main·Chapter II]§rExplore the World
 ls.text.task_group_introduction.explore=Go across dimensions, travel through biomes
+ls.text.task_group.science_and_magic=§6[Branch]§rTechnology and Magic
+ls.text.task_group_introduction.science_and_magic=The interweaving of science and mythology is the mysterious power that the Creator buried in the world.
+ls.text.task_group.easter_egg=§3E§6a§2s§d§3t§6e§2r §dE§3g§6g§r
+ls.text.task_group_introduction.easter_egg=This is a little idea from the development team! §7§oEaster egg quests will be gradually unlocked as the game progresses.§r
+ls.text.task.lucky7=Lucky Number is 7
+ls.text.task_introduction.lucky7=Seven eras, seven ancient kingdoms, §oMartyrs of the Sept§r... It seems that the lucky number of this world is seven! [Idea by MCcaptain5412]
 ls.text.task.crafting_table=Crafting
 ls.text.task_introduction.crafting_table=Crafting table creates everything.
 ls.text.task.torch=Beginning of light
@@ -23,6 +29,12 @@ ls.text.task.diamond=Shining gemstone
 ls.text.task_introduction.diamond=Are you persuiting for the blue stone?
 ls.text.task.legendary_nugget=An ancient reward
 ls.text.task_introduction.legendary_nugget=The secret ore buried in the earth for thousands of years.
+ls.text.task.redstone=Origin of Technology
+ls.text.task_introduction.redstone=Beware of high voltage—Ah! Ouch!
+ls.text.task.redstone_chip=Lost Technology
+ls.text.task_introduction.redstone_chip=It is said to be the embodiment of ancient ancestors' wisdom.
+ls.text.task.lapis_lazuli=Cloaked in Magic
+ls.text.task_introduction.lapis_lazuli=An unremarkable stone, hiding unknown magical power.
 ls.text.tasksIndexTitle=Select chapter...
 ls.text.tasksIndex=What an ancient book...
 ls.text.task_finished=§aTask finished§r
@@ -50,6 +62,7 @@ ls.text.MenuIndex.2=It seems someone forgot it here, and you found it and picked
 ls.text.menu.tasks=Tasks
 ls.text.menu.articles=Forgotten Travelogues
 ls.text.menu.copyright=Copyright Notice
+ls.text.menu.update=Release Note-v2.0.0-alpha.4
 ls.text.articlesTitle=Forgotten Travelogues
 ls.text.no_articles=These words have faded into the long river of history, perhaps still hidden somewhere in the world...
 ls.text.articles=Words lost in the long river of time
@@ -106,6 +119,26 @@ ls.text.copyright.31=§oIf this addon or its development team members have any e
 ls.text.copyright.32= 
 ls.text.copyright.33=All §l§bartistic§r resources involved in this project (including but not limited to §etextures, models, sound effects, music, UI assets, illustrations, visual effects, animations§r, etc.) are exclusively owned by §eCTN Studio§r and its creators under copyright law, and do not fall under the aforementioned open-source license.
 ls.text.copyright.34=No individual or entity may reproduce, modify, distribute, commercially use, or re-use the above artistic resources without the written permission of CTN Studio.
+ls.text.update.1=§o§eThe current version is a §c§l§otrail§r§e§o version, which may contain bugs. Please remember to backup your save.§r
+ls.text.update.2=The current version is §bv2.0.0-alpha.4§r, bringing the following changes:
+ls.text.update.3=§lNew Features§r
+ls.text.update.4=· Added version release note.
+ls.text.update.5=· Players will now get the Forgotten Book upon first joining.
+ls.text.update.6=· Now supports importing task records from certain other addons.
+ls.text.update.7=· Added more tasks.
+ls.text.update.8=· Added support for Vibrant Visuals.
+ls.text.update.9=
+ls.text.update.10=Please visit "Tencent Channel - CTN Club (pd09459981) - Other Works" or join QQ group 631065058 to get updates and report issues.
+action.interact.legendary_sword:forgotten_book=Open the menu of §oLegendary Sword§r
+action.interact.legendary_sword:articles=Read
+ls.text.importTask=Import task records from other addons
+ls.text.importTaskSource=Source addon
+ls.text.importTaskLimitWarn=Only supports importing tasks that exist in §oLegendary Sword·The Sealed Legend§r
+ls.text.importTaskAutoClaim=Automatically claim rewards after importing tasks. §7§oIf this option is off, you will need to go to the task list to claim rewards manually.§r
+ls.text.submitImportTask=Start Import
+ls.text.finishImportTask=§aImport completed!§r
+ls.text.importHy3=Hidden Year²: Governor at the Skyline §3§oSupports version 3.x
+ls.text.importHy2=Hidden Year² §3§oSupports version 2.x
 
 //catalogs
 legendary_sword:itemGroup.name.ores=Legendary Sword·Ores
@@ -146,6 +179,8 @@ item.legendary_sword:sword_talisman=Sword Talisman
 item.legendary_sword:tear_hairpin=Tear Hairpin
 item.legendary_sword:tripling_quiver=Tripling Quiver
 item.legendary_sword:winecontaining_gourd=Wine-Containing
+
+item.legendary_sword:developers_doll_lootbag=Legendary Bundle - §bDevelopers' Dolls§r
 
 //blocks
 item.legendary_sword:alex_doll=Alex Doll

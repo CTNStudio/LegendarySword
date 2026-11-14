@@ -1,0 +1,19 @@
+{
+    "format_version": "1.26.0",
+    "minecraft:item": {
+        "description": {
+            "identifier": "legendary_sword:developers_doll_lootbag",
+            "menu_category": {
+                "category": "items"
+            }
+        },
+        "components": {
+            "minecraft:icon": "developers_doll_lootbag",
+            "minecraft:max_stack_size": 64,
+            "minecraft:interact_button": true,
+            "legendary_sword:lootbag":{
+                "loot": "lootbags/developers_doll_lootbag"
+            }
+        }
+    }
+}

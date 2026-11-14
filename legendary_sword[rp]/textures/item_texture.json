@@ -97,6 +97,9 @@
         },
         "xinghua_sword": {
             "textures": "textures/items/xinghua_sword"
+        },
+        "developers_doll_lootbag": {
+            "textures": "textures/items/developers_doll_lootbag"
         }
     }
 }

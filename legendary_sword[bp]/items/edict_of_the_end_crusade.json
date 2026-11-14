@@ -10,6 +10,7 @@
         "components": {
             "minecraft:icon": "edict_of_the_end_crusade",
             "minecraft:max_stack_size": 1,
+            "minecraft:interact_button": "action.interact.legendary_sword:articles",
             "minecraft:tags": {
                 "tags": [
                     "minecraft:bookshelf_books"

@@ -1,5 +1,31 @@
 import { world, system, ItemStack, CustomComponentParameters } from "@minecraft/server";
-import { ActionFormData, ActionFormResponse, MessageFormData, MessageFormResponse } from "@minecraft/server-ui";
+import { ActionFormData, ActionFormResponse, MessageFormData, MessageFormResponse, ModalFormData, ModalFormResponse } from "@minecraft/server-ui";
+
+const hy2Tasks= [
+{
+  source: "hy-q:crafting_table",
+  chapter: 0,
+  task: 0
+},
+{
+  source: "hy-q:diamond",
+  chapter: 0,
+  task: 5
+}
+]
+
+const hy3Tasks= [
+  {
+    source: "hiddenyears:crafting_table",
+    chapter: 0,
+    task: 0
+  },
+  {
+    source: "hiddenyears:diamond",
+    chapter: 0,
+    task: 5
+  }
+]
 
 const ArticleData = [
 {
@@ -18,6 +44,7 @@ const TaskData = [
       task_id: 1,
       task_name: "ls.text.task.crafting_table",
       task_introduction: "ls.text.task_introduction.crafting_table",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:crafting_table",
@@ -40,6 +67,7 @@ const TaskData = [
       task_id: 2,
       task_name: "ls.text.task.torch",
       task_introduction: "ls.text.task_introduction.torch",
+      need_unlock: false,
       requirement: {
         get_any_items:[{
           item_id: "minecraft:torch",
@@ -70,6 +98,7 @@ const TaskData = [
       task_id: 3,
       task_name: "ls.text.task.stone_pickaxe",
       task_introduction: "ls.text.task_introduction.stone_pickaxe",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:stone_pickaxe",
@@ -92,6 +121,7 @@ const TaskData = [
       task_id: 4,
       task_name: "ls.text.task.iron_pickaxe",
       task_introduction: "ls.text.task_introduction.iron_pickaxe",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:iron_pickaxe",
@@ -114,6 +144,7 @@ const TaskData = [
       task_id: 5,
       task_name: "ls.text.task.water_bucket",
       task_introduction: "ls.text.task_introduction.water_bucket",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:water_bucket",
@@ -136,6 +167,7 @@ const TaskData = [
       task_id: 6,
       task_name: "ls.text.task.diamond",
       task_introduction: "ls.text.task_introduction.diamond",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:diamond",
@@ -158,6 +190,7 @@ const TaskData = [
       task_id: 7,
       task_name: "ls.text.task.legendary_nugget",
       task_introduction: "ls.text.task_introduction.legendary_nugget",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "legendary_sword:legendary_nugget",
@@ -187,6 +220,7 @@ const TaskData = [
       task_id: 8,
       task_name: "ls.text.task.obsidian",
       task_introduction: "ls.text.task_introduction.obsidian",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:obsidian",
@@ -209,6 +243,7 @@ const TaskData = [
       task_id: 9,
       task_name: "ls.text.task.coin",
       task_introduction: "ls.text.task_introduction.coin",
+      need_unlock: false,
       requirement: {
         get_all_items:[{
           item_id: "minecraft:emerald",
@@ -225,7 +260,110 @@ const TaskData = [
           item_id: "legendary_sword:hopeful_coin",
           count: 5
         }],
-        add_xp: 20
+        add_xp: 20,
+        give_tag: "ls:unlocked_task.10"
+      }
+    }
+  ]
+},
+{
+  chapter_id: 4,
+  chapter_name: "ls.text.task_group.science_and_magic",
+  chapter_introduction: "ls.text.task_group_introduction.science_and_magic",
+  tasks:[
+    {
+      task_id: 11,
+      task_name: "ls.text.task.redstone",
+      task_introduction: "ls.text.task_introduction.redstone",
+      need_unlock: false,
+      requirement: {
+        get_all_items:[{
+          item_id: "minecraft:redstone",
+          count: 5
+        }]
+      },
+      award: {
+        get_items:[{
+          item_id: "minecraft:bread",
+          count: 3
+        },
+        {
+          item_id: "legendary_sword:hopeful_coin",
+          count: 3
+        }],
+        add_xp: 15
+      }
+    },
+    {
+      task_id: 12,
+      task_name: "ls.text.task.redstone_chip",
+      task_introduction: "ls.text.task_introduction.redstone_chip",
+      need_unlock: false,
+      requirement: {
+        get_all_items:[{
+          item_id: "legendary_sword:redstone_chip",
+          count: 1
+        }]
+      },
+      award: {
+        get_items:[{
+          item_id: "minecraft:bread",
+          count: 3
+        },
+        {
+          item_id: "legendary_sword:hopeful_coin",
+          count: 3
+        }],
+        add_xp: 15
+      }
+    },
+    {
+      task_id: 13,
+      task_name: "ls.text.task.lapis_lazuli",
+      task_introduction: "ls.text.task_introduction.lapis_lazuli",
+      need_unlock: false,
+      requirement: {
+        get_all_items:[{
+          item_id: "minecraft:lapis_lazuli",
+          count: 10
+        }]
+      },
+      award: {
+        get_items:[{
+          item_id: "minecraft:bread",
+          count: 3
+        },
+        {
+          item_id: "legendary_sword:hopeful_coin",
+          count: 3
+        }],
+        add_xp: 15
+      }
+    }
+  ]
+},
+{
+  chapter_id: 3,
+  chapter_name: "ls.text.task_group.easter_egg",
+  chapter_introduction: "ls.text.task_group_introduction.easter_egg",
+  tasks:[
+    {
+      task_id: 10,
+      task_name: "ls.text.task.lucky7",
+      task_introduction: "ls.text.task_introduction.lucky7",
+      need_unlock: true,
+      requirement: {
+        get_all_items:[{
+          item_id: "legendary_sword:hopeful_coin",
+          count: 777
+        }]
+      },
+      award: {
+        get_items:[{
+          item_id: "legendary_sword:developers_doll_lootbag",
+          count: 1
+        }],
+        add_xp: 100
       }
     }
   ]
@@ -258,6 +396,25 @@ function giveItem(player,typeId,count){
   }
 }
 
+function giveLoot(player,loot){
+  const inventory=player.getComponent("minecraft:inventory").container;
+  const dimension=player.dimension;
+  let availableSlot=[]
+  for(let i=1;i<inventory.size;i++){
+    let itemInSlot=inventory.getItem(i);
+    if(itemInSlot==undefined){
+      availableSlot.push(i);
+    }
+  }
+  if(availableSlot.length!=0){
+    dimension.runCommand(`loot give ${player.name} loot "${loot}"`);
+  }
+  else{
+    let dimension=player.dimension;
+    dimension.runCommand(`loot spawn ${player.location.x} ${player.location.y+1} ${player.location.z} loot "${loot}"`)
+  }
+}
+
 function showMenuIndex(player){
   let menuPage=new ActionFormData();
   menuPage.title("%ls.text.MenuIndexTitle");
@@ -267,6 +424,7 @@ function showMenuIndex(player){
   menuPage.button("%ls.text.menu.articles","textures/ui/article_menu");
   menuPage.divider();
   menuPage.button("%ls.text.menu.copyright","textures/ui/copyright_menu");
+  menuPage.button("%ls.text.menu.update","textures/ui/update_menu");
   menuPage.show(player).then((response)=>{
     if(response.canceled) return;
     switch(response.selection){
@@ -278,6 +436,9 @@ function showMenuIndex(player){
         break;
       case 2:
         copyright(player);
+        break;
+      case 3:
+        update(player);
         break;
     }
   })
@@ -295,6 +456,23 @@ function copyright(player){
   copyrightPage.body(copyrightBody);
   copyrightPage.button("%ls.text.return_to_menu");
   copyrightPage.show(player).then((response)=>{
+    if(response.canceled) return;
+    showMenuIndex(player);
+  })
+}
+
+function update(player){
+  let updatePage=new ActionFormData();
+  updatePage.title("%ls.text.menu.update");
+  let updateBody={
+    rawtext:[]
+  }
+  for(let i=1;i<=10;i++){
+    updateBody.rawtext.push({translate:`%ls.text.update.${i}`},{text: "\n"})
+  }
+  updatePage.body(updateBody);
+  updatePage.button("%ls.text.return_to_menu");
+  updatePage.show(player).then((response)=>{
     if(response.canceled) return;
     showMenuIndex(player);
   })
@@ -343,11 +521,46 @@ function showArticle(player,article){
   })
 }
 
+function showImportTask(player){
+  let importTaskPage=new ModalFormData();
+  const sourceList=["%ls.text.importHy3","%ls.text.importHy2"];
+  const source=new Map();
+  source.set(0,hy3Tasks);
+  source.set(1,hy2Tasks);
+  importTaskPage.title("%ls.text.importTask");
+  importTaskPage.dropdown(
+    "%ls.text.importTaskSource",
+    sourceList,
+    {tooltip: "%ls.text.importTaskLimitWarn"}
+  );
+  importTaskPage.toggle("%ls.text.importTaskAutoClaim", {
+    defaultValue: true
+  });
+  importTaskPage.submitButton("%ls.text.submitImportTask")
+  importTaskPage.show(player).then((response)=>{
+    if(response.canceled) return;
+    const [sourceId,autoClaim]=response.formValues;
+    for (const task of source.get(sourceId)){
+      if(player.hasTag(task.source)){
+        let lsTask=TaskData[task.chapter].tasks[task.task];
+        if(!player.hasTag(`ls:completed_task.${lsTask.task_id}`)){
+          player.addTag(`ls:completed_task.${lsTask.task_id}`)
+          if(autoClaim){
+            giveAward(player,lsTask)
+          }
+        }
+      }
+    }
+    player.sendMessage("%ls.text.finishImportTask")
+  })
+}
+
 function showTasksIndex(player){
   let tasksIndexPage=new ActionFormData();
   tasksIndexPage.title("%ls.text.tasksIndexTitle");
   tasksIndexPage.body("%ls.text.tasksIndex");
   tasksIndexPage.button("%ls.text.return_to_menu");
+  tasksIndexPage.button("%ls.text.importTask");
   const length=TaskData.length;
   for(let i=0;i<length;i++){
     let chapterName=TaskData[i].chapter_name;
@@ -356,8 +569,9 @@ function showTasksIndex(player){
   tasksIndexPage.show(player).then((response)=>{
     if (response.canceled) return;
     if (response.selection==0) showMenuIndex(player)
+    else if(response.selection==1) showImportTask(player)
     else{
-      let chapter=TaskData[response.selection-1];
+      let chapter=TaskData[response.selection-2];
       showChapterTaskList(chapter,player);
     }
   });
@@ -373,11 +587,13 @@ function showChapterTaskList(chapter,player){
   for(let i=0;i<length;i++){
     let taskName=chapterTaskList[i].task_name;
     const taskId=chapterTaskList[i].task_id;
-    const isTaskFinished=player.hasTag(`ls:completed_task.${taskId}`);
-    const isAwardClaimed=player.hasTag(`ls:claimed_award.${taskId}`);
-    if (isTaskFinished&&isAwardClaimed) chapterTaskListPage.button({rawtext:[{translate:"ls.text.task_finished_name",with:{rawtext:[{translate:`%${taskName}`}]}}]},`textures/ui/tasks/task_${taskId}`)
-    else if (isTaskFinished&&!isAwardClaimed) chapterTaskListPage.button({rawtext:[{translate:"ls.text.claim_award_name",with:{rawtext:[{translate:`%${taskName}`}]}}]},`textures/ui/tasks/task_${taskId}`)
-    else chapterTaskListPage.button(`%${taskName}`,`textures/ui/tasks/task_${taskId}`)
+    if((!chapterTaskList[i].need_unlock)||(chapterTaskList[i].need_unlock&&player.hasTag(`ls:unlocked_task.${taskId}`))){
+      const isTaskFinished=player.hasTag(`ls:completed_task.${taskId}`);
+      const isAwardClaimed=player.hasTag(`ls:claimed_award.${taskId}`);
+      if (isTaskFinished&&isAwardClaimed) chapterTaskListPage.button({rawtext:[{translate:"ls.text.task_finished_name",with:{rawtext:[{translate:`%${taskName}`}]}}]},`textures/ui/tasks/task_${taskId}`)
+      else if (isTaskFinished&&!isAwardClaimed) chapterTaskListPage.button({rawtext:[{translate:"ls.text.claim_award_name",with:{rawtext:[{translate:`%${taskName}`}]}}]},`textures/ui/tasks/task_${taskId}`)
+      else chapterTaskListPage.button(`%${taskName}`,`textures/ui/tasks/task_${taskId}`)
+    }
   };
   chapterTaskListPage.show(player).then((response)=>{
     if(response.canceled) return;
@@ -526,7 +742,19 @@ function giveAward(player,task){
     let xp=award.add_xp;
     player.addExperience(xp)
   }
+  if(award.give_tag){
+    player.addTag(award.give_tag)
+  }
 }
+
+world.afterEvents.playerSpawn.subscribe((event)=>{
+  if(!event.initialSpawn) return;
+  const player=event.player;
+  if(!player.hasTag("ls:claimed_task_book")){
+    giveItem(player,"legendary_sword:forgotten_book",1)
+    player.addTag("ls:claimed_task_book")
+  }
+})
 
 world.afterEvents.itemUse.subscribe((event)=>{
   const player=event.source;
@@ -547,6 +775,22 @@ system.beforeEvents.startup.subscribe((event)=>{
         player.addTag(`ls:unlocked_article.${article.article_id}`);
         player.sendMessage({rawtext:[{translate:"ls.text.unlock_article",with:{rawtext:[{translate:`ls.text.article.${article.article_id}.title`}]}}]})
       }
+    }
+  });
+  event.itemComponentRegistry.registerCustomComponent("legendary_sword:lootbag",{
+    onUse(event,p){
+      const { source, itemStack } = event;
+      const player=event.source;
+      const dimension=player.dimension;
+      const location=player.location;
+      if(itemStack.amount-1<=0){
+        player.getComponent("minecraft:equippable").setEquipment("Mainhand")
+      }
+      else{
+        itemStack.amount-=1;
+        player.getComponent("minecraft:equippable").setEquipment("Mainhand",itemStack)
+      }
+      giveLoot(player,p.params.loot)
     }
   })
 })
