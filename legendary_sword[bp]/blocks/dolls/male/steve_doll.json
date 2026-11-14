@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.male"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/steve_doll.json",
+            "minecraft:loot": "loot_tables/dolls/steve_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:steve",
                 "particle_count": 30

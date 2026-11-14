@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.male"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/lin_xinghua_doll.json",
+            "minecraft:loot": "loot_tables/dolls/lin_xinghua_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:lin_xinghua",
                 "particle_count": 30

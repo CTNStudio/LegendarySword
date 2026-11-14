@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.female"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/alex_doll.json",
+            "minecraft:loot": "loot_tables/dolls/alex_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:alex",
                 "particle_count": 30

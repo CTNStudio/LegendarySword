@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.male"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/rex_anvil_doll.json",
+            "minecraft:loot": "loot_tables/dolls/rex_anvil_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:rex_anvil",
                 "particle_count": 30

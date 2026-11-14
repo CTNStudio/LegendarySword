@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.male"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/silas_frostborne_doll.json",
+            "minecraft:loot": "loot_tables/dolls/silas_frostborne_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:silas_frostborne",
                 "particle_count": 30

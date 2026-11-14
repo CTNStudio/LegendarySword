@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.male"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/victor_nightbrew_doll.json",
+            "minecraft:loot": "loot_tables/dolls/victor_nightbrew_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:victor_nightbrew",
                 "particle_count": 30

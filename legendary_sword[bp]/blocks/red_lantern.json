@@ -24,8 +24,8 @@
                 "*": {
                     "texture": "legendary_sword:red_lantern",
                     "render_method": "blend",
-                    "ambient_occlusion": falegendary_sworde,
-                    "face_dimming": falegendary_sworde
+                    "ambient_occlusion": false,
+                    "face_dimming": false
                 }
             },
             "minecraft:selection_box": {

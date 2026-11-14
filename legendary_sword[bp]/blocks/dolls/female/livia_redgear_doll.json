@@ -82,7 +82,7 @@
             "minecraft:geometry": {
                 "identifier": "geometry.female"
             },
-            "minecraft:loot": "loot_tables/dollegendary_sword/livia_redgear_doll.json",
+            "minecraft:loot": "loot_tables/dolls/livia_redgear_doll.json",
             "minecraft:destruction_particles": {
                 "texture": "legendary_sword:livia_redgear",
                 "particle_count": 30
