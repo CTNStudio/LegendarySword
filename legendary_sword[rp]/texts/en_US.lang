@@ -1,6 +1,6 @@
 //core
 pack.name=Legendary Sword·The Sealed Legend·Resource Pack
-pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.5
+pack.description=Resource pack of Legendary Sword·The Sealed Legend | Trail 2.0.0-alpha.6
 ls.text.task_group.minecraft=§d[Main·Chapter I]§rMinecraft
 ls.text.task_group_introduction.minecraft=Lucid waters and lush mountains are the beginning of a new journey.
 ls.text.task_group.explore=§d[Main·Chapter II]§rExplore the World
@@ -62,7 +62,7 @@ ls.text.MenuIndex.2=It seems someone forgot it here, and you found it and picked
 ls.text.menu.tasks=Tasks
 ls.text.menu.articles=Forgotten Travelogues
 ls.text.menu.copyright=Copyright Notice
-ls.text.menu.update=Release Note-v2.0.0-alpha.5
+ls.text.menu.update=Release Note-v2.0.0-alpha.6
 ls.text.articlesTitle=Forgotten Travelogues
 ls.text.no_articles=These words have faded into the long river of history, perhaps still hidden somewhere in the world...
 ls.text.articles=Words lost in the long river of time
@@ -120,10 +120,10 @@ ls.text.copyright.32=
 ls.text.copyright.33=All §l§bartistic§r resources involved in this project (including but not limited to §etextures, models, sound effects, music, UI assets, illustrations, visual effects, animations§r, etc.) are exclusively owned by §eCTN Studio§r and its creators under copyright law, and do not fall under the aforementioned open-source license.
 ls.text.copyright.34=No individual or entity may reproduce, modify, distribute, commercially use, or re-use the above artistic resources without the written permission of CTN Studio.
 ls.text.update.1=§o§eThe current version is a §c§l§otrail§r§e§o version, which may contain bugs. Please remember to backup your save.§r
-ls.text.update.2=The current version is §bv2.0.0-alpha.5§r, bringing the following changes:
-ls.text.update.3=§lNew Features§r
-ls.text.update.4=· Added smithing templates for each level of the Legendary Sword
-ls.text.update.5=· Migrated doll-related scripts to custom components
+ls.text.update.2=The current version is §bv2.0.0-alpha.6§r, bringing the following changes:
+ls.text.update.3=§lChanges§r
+ls.text.update.4=· Enabled the new trinket system
+ls.text.update.5=· §7§oTechnical:§r Refactored all legacy scripts using custom components
 ls.text.update.6= 
 ls.text.update.7==Please visit "Tencent Channel - CTN Club (pd09459981) - Other Works" or join QQ group 631065058 to get updates and report issues.
 action.interact.legendary_sword:forgotten_book=Open the menu of §oLegendary Sword§r
@@ -136,6 +136,19 @@ ls.text.submitImportTask=Start Import
 ls.text.finishImportTask=§aImport completed!§r
 ls.text.importHy3=Hidden Year²: Governor at the Skyline §3§oSupports version 3.x
 ls.text.importHy2=Hidden Year² §3§oSupports version 2.x
+ls.text.trinket_menu=Trinket - §l§b[%1]§r
+ls.text.menu.no_trinket=Trinket - §8Not Equipped§r
+ls.text.remove_trinket=Remove Trinket
+ls.text.trinket_removed=Trinket removed!
+ls.text.trinket_equipped=Equipped trinket §b[%1]§r
+ls.text.trinket_effect_exp=Trinket equipped, original §b[%1]§r effect has been converted to Exp. §a%2§r
+ls.text.introduction.legendary_sword:tear_hairpin=A hairpin frozen with cold tears, enough to soothe the scorching pain of the wearer.
+ls.text.introduction.legendary_sword:winecontaining_gourd=Though strong wine blurs one's vision when swallowed, it allows brute force to erupt through intoxication.
+ls.text.introduction.legendary_sword:sword_talisman=A talisman imbued with ancient sword intent; it can awaken latent potential when resonating with a blade in hand.
+ls.text.trinket_effects=§eEffects when equipped:§r
+ls.text.trinket_effects.legendary_sword:tear_hairpin=Gives Fire Resistance effect
+ls.text.trinket_effects.legendary_sword:winecontaining_gourd=Gives Nausea and Strength I effects
+ls.text.trinket_effects.legendary_sword:sword_talisman=Gives Strength II effect while holding a sword
 
 //technical
 item.minecraft:crafting_table=Crafting Table

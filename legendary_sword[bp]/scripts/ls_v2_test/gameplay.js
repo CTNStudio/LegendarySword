@@ -420,11 +420,17 @@ function giveLoot(player,loot){
 //Menu
 function showMenuIndex(player){
   let menuPage=new ActionFormData();
+  let trinket = player.getDynamicProperty("legendary_sword:trinket");
+  let trinketName={
+    rawtext:[{translate:"ls.text.trinket_menu",with:{rawtext:[{translate:`item.${trinket}`}]}}]
+  }
   menuPage.title("%ls.text.MenuIndexTitle");
   menuPage.body("%ls.text.MenuIndex.1");
   menuPage.body("%ls.text.MenuIndex.2");
   menuPage.button("%ls.text.menu.tasks","textures/ui/task_menu");
   menuPage.button("%ls.text.menu.articles","textures/ui/article_menu");
+  if(trinket==undefined) menuPage.button("%ls.text.menu.no_trinket","textures/ui/trinket_menu");
+  else menuPage.button(trinketName,`textures/ui/trinkets/${trinket.split(":")[1]}`);
   menuPage.divider();
   menuPage.button("%ls.text.menu.copyright","textures/ui/copyright_menu");
   menuPage.button("%ls.text.menu.update","textures/ui/update_menu");
@@ -438,10 +444,43 @@ function showMenuIndex(player){
         articleIndex(player);
         break;
       case 2:
-        copyright(player);
+        if(trinket!=undefined){
+          trinketPage(player,trinket);
+        }
         break;
       case 3:
+        copyright(player);
+        break;
+      case 4:
         update(player);
+        break;
+    }
+  })
+}
+
+function trinketPage(player,trinket){
+  let TrinketPage = new MessageFormData();
+  let trinketDiscription={
+    rawtext:[{translate:`ls.text.introduction.${trinket}`},{text: "\n"},{translate:"ls.text.trinket_effects",with:{rawtext:[{translate:`ls.text.trinket_effects.${trinket}`}]}}]
+  }
+  TrinketPage.title({translate:"ls.text.trinket_menu",with:{rawtext:[{translate:`item.${trinket}`}]}});
+  TrinketPage.body(trinketDiscription);
+  TrinketPage.button1("%ls.text.remove_trinket");
+  TrinketPage.button2("%ls.text.return_to_menu");
+  TrinketPage.show(player).then((response)=>{
+    switch(response.selection){
+      case 0:
+        giveItem(player,trinket,1);
+        player.setDynamicProperty("legendary_sword:trinket");
+        let originWearingTrinketString=world.getDynamicProperty("legendary_sword:trinket_data");
+        if(typeof originWearingTrinketString === 'undefined') return;
+        const wearingTrinket = new Map(Object.entries(JSON.parse(originWearingTrinketString)));
+        wearingTrinket.delete(player.name);
+        world.setDynamicProperty("legendary_sword:trinket_data", JSON.stringify(Object.fromEntries(wearingTrinket)));
+        player.onScreenDisplay.setActionBar({rawtext:[{translate:"ls.text.trinket_removed"}]});
+        break;
+      case 1:
+        showMenuIndex(player);
         break;
     }
   })
@@ -827,6 +866,93 @@ world.afterEvents.playerInventoryItemChange.subscribe((event)=>{
   }
 })
 
+//Music disc play & stop, AI migrated from ls_v1/music_disc.js with human review
+const playingRecords = new Map();
+
+function recordKey(block){
+  return `${block.dimension.id},${block.location.x},${block.location.y},${block.location.z}`
+}
+
+function playRecord(block,player,disc){
+  playingRecords.set(recordKey(block),disc.sound);
+  block.dimension.playSound(disc.sound, block.location);
+  player.runCommand(`title @a[r=10] actionbar ${disc.display}`);
+}
+
+function stopRecord(block,player){
+  const key=recordKey(block);
+  const sound=playingRecords.get(key);
+  playingRecords.delete(key);
+  player.runCommand(`stopsound @a ${sound}`);
+}
+
+world.beforeEvents.playerInteractWithBlock.subscribe((event)=>{
+  const { player, block } = event;
+  if(player.isSneaking) return;
+  if(block.typeId != "minecraft:jukebox") return;
+  if(!playingRecords.has(recordKey(block))) return;
+  system.run(()=>stopRecord(block,player));
+})
+
+world.beforeEvents.playerBreakBlock.subscribe((event)=>{
+  const { player, block } = event;
+  if(block.typeId != "minecraft:jukebox") return;
+  if(!playingRecords.has(recordKey(block))) return;
+  system.run(()=>stopRecord(block,player));
+})
+
+//trinkets
+function checkTrinketCondition(player,condition){
+  if(condition==="holding_sword"){
+    if(player.getComponent("minecraft:inventory").container.getItem(player.selectedSlotIndex)?.hasTag("minecraft:is_sword")) return true;
+  } 
+}
+
+system.runInterval(()=>{
+  const players = world.getAllPlayers();
+  let originWearingTrinketString=world.getDynamicProperty("legendary_sword:trinket_data");
+  if(typeof originWearingTrinketString === 'undefined') return;
+  const wearingTrinket = new Map(Object.entries(JSON.parse(originWearingTrinketString)));
+  for (const player of players) {
+    if(!wearingTrinket.has(player.name)) continue;
+    const params = wearingTrinket.get(player.name);
+    for(let i=0;i<params.length;i++){
+      let doGiveEffect;
+      const effect = params[i];
+      if(!params[i].condition) doGiveEffect=true;
+      else if(checkTrinketCondition(player,params[i].condition)) doGiveEffect=true;
+      else doGiveEffect=false;
+      if(doGiveEffect){
+        if(player.getEffect(effect.id)?.duration>=40){
+          let amplifier=player.getEffect(effect.id)?.amplifier+1;
+          let rewardExp=amplifier*(Math.floor(Math.floor(player.getEffect(effect.id).duration/20)/2));
+          player.addExperience(rewardExp);
+          player.sendMessage({rawtext:[{translate:"ls.text.trinket_effect_exp",with:{rawtext:[{text:`${player.getEffect(effect.id).displayName}`},{text:`${rewardExp}`}]}}]});
+          player.removeEffect(effect.id);
+        }
+        player.addEffect(effect.id,10,{amplifier: effect.amplifier,showParticles: false});
+      }
+    }
+  }
+})
+
+world.afterEvents.entityDie.subscribe((event)=>{
+  const entity=event.deadEntity;
+  if(!entity.typeId=="minecraft:player") return;
+  if(world.gameRules.keepInventory) return;
+  if(entity.getDynamicProperty("legendary_sword:trinket")==undefined) return;
+  const item=new ItemStack(entity.getDynamicProperty("legendary_sword:trinket"),1);
+  let originWearingTrinketString=world.getDynamicProperty("legendary_sword:trinket_data");
+  if(typeof originWearingTrinketString === 'undefined') return;
+  const wearingTrinket = new Map(Object.entries(JSON.parse(originWearingTrinketString)));
+  wearingTrinket.delete(entity.name);
+  world.setDynamicProperty("legendary_sword:trinket_data", JSON.stringify(Object.fromEntries(wearingTrinket)));
+  let dimension=entity.dimension;
+  let location=entity.location;
+  dimension.spawnItem(item,location); 
+  entity.setDynamicProperty("legendary_sword:trinket");
+})
+
 system.beforeEvents.startup.subscribe((event)=>{
   event.itemComponentRegistry.registerCustomComponent("legendary_sword:article_unlocker",{
     onUse(event,p){
@@ -856,6 +982,52 @@ system.beforeEvents.startup.subscribe((event)=>{
       giveLoot(player,p.params.loot)
     }
   });
+  //Ignite effect, AI migrated from ls_v1/ignite_on_hit.js with human review
+  event.itemComponentRegistry.registerCustomComponent("legendary_sword:ignite_on_hit",{
+    onHitEntity(event,p){
+      event.hitEntity.setOnFire(p.params?.seconds ?? 1)
+    }
+  });
+  //Music disc play & stop, AI migrated from ls_v1/music_disc.js with human review
+  event.itemComponentRegistry.registerCustomComponent("legendary_sword:music_disc",{
+    onUseOn(event,p){
+      const { block, source, itemStack } = event;
+      if(block.typeId != "minecraft:jukebox") return;
+      if(source.isSneaking) return;
+      const recordPlayer = block.getComponent("minecraft:record_player");
+      if(recordPlayer.getRecord()?.typeId != itemStack.typeId) return;
+      playRecord(block,source,p.params)
+    }
+  });
+  event.itemComponentRegistry.registerCustomComponent("legendary_sword:trinket",{
+    onUse(event,p){
+      const { source, itemStack } = event;
+      const player=source;
+      const trinket = player.getDynamicProperty("legendary_sword:trinket");
+      let originWearingTrinketString=world.getDynamicProperty("legendary_sword:trinket_data");
+      let wearingTrinket;
+      if(typeof originWearingTrinketString === 'undefined'){
+        wearingTrinket = new Map();
+      }
+      else{
+        wearingTrinket = new Map(Object.entries(JSON.parse(originWearingTrinketString)));
+      };
+      if(trinket!=undefined){
+        giveItem(player,trinket,1);
+        const params = wearingTrinket.get(player.name);
+        for(let i=0;i<params.length;i++){
+          player.removeEffect(params[i].id)
+        }
+      }
+      wearingTrinket.set(player.name,p.params);
+      let obj = Object.fromEntries(wearingTrinket);
+      const wearingTrinketString = JSON.stringify(obj);
+      world.setDynamicProperty("legendary_sword:trinket_data",wearingTrinketString);
+      player.setDynamicProperty("legendary_sword:trinket",itemStack.typeId);
+      player.getComponent("minecraft:equippable").setEquipment("Mainhand");
+      player.onScreenDisplay.setActionBar({rawtext:[{translate:"ls.text.trinket_equipped",with:{rawtext:[{translate:`item.${itemStack.typeId}`}]}}]})
+    }
+  })
   event.blockComponentRegistry.registerCustomComponent("legendary_sword:doll",{
     onPlayerBreak: (event) => {
       const { player, block, dimension } = event;

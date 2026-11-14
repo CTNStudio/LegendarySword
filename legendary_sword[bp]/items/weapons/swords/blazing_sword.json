@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.120",
+    "format_version": "1.26.0",
     "minecraft:item": {
         "description": {
             "identifier": "legendary_sword:blazing_sword",
@@ -55,6 +55,9 @@
                     "minecraft:is_tool",
                     "minecraft:diamond_tier"
                 ]
+            },
+            "legendary_sword:ignite_on_hit": {
+                "seconds": 6
             }
         }
     }

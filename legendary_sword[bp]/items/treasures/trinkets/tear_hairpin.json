@@ -1,5 +1,5 @@
 {
-    "format_version": "1.21.70",
+    "format_version": "1.26.0",
     "minecraft:item": {
         "description": {
             "identifier": "legendary_sword:tear_hairpin",
@@ -11,7 +11,13 @@
             "minecraft:icon": "tear_hairpin",
 			"minecraft:allow_off_hand": true,
             "minecraft:hand_equipped": true,
-            "minecraft:max_stack_size": 1
+            "minecraft:max_stack_size": 1,
+            "legendary_sword:trinket":[
+                {
+                    "id": "fire_resistance",
+                    "amplifier": 0
+                }
+            ]
         }
     }
 }
